@@ -1,0 +1,24 @@
+<div>
+  <mat-dialog-content class="title">
+    Sunteti gata sa iesiti din aplicatie!</mat-dialog-content
+  >
+  <mat-dialog-actions>
+    <button
+      class="btn log1"
+      mat-button
+      mat-dialog-close
+      mat-dialog-close="true"
+    >
+      Keep me logged in
+    </button>
+    <button
+      class="btn log2"
+      mat-button
+      mat-dialog-close
+      mat-dialog-close="false"
+      (click)="goToLoginPage()"
+    >
+      Log out
+    </button>
+  </mat-dialog-actions>
+</div>

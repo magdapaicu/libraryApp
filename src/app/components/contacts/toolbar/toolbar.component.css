@@ -1,0 +1,71 @@
+.mat-toolbar {
+  background-color: black;
+  height: 73px;
+  color: white;
+}
+.mat-button {
+  color: white;
+}
+.bookSpan {
+  font-size: 30px;
+  color: white;
+}
+.bi-list {
+  color: white;
+}
+.sidenav-toggle {
+  display: none;
+
+  @media (max-width: 720px) {
+    display: flex;
+  }
+}
+.bi-x-circle-fill {
+  color: rgb(219, 16, 16);
+
+  margin-left: 10px;
+}
+.homeButton {
+  --bs-btn-color: #ffffff;
+  color: #ffffff;
+  margin-left: 200px;
+}
+.homeButton:hover {
+  background-color: rgb(93, 94, 95);
+}
+.booksButton {
+  --bs-btn-color: #ffffff;
+  color: #ffffff;
+}
+.booksButton:hover {
+  background-color: rgb(93, 94, 95);
+}
+
+.usersButton {
+  --bs-btn-color: #ffffff;
+  color: #ffffff;
+}
+.usersButton:hover {
+  background-color: rgb(93, 94, 95);
+}
+
+.contactsButton {
+  --bs-btn-color: #ffffff;
+  color: #ffffff;
+}
+.contactsButton:hover {
+  background-color: rgb(93, 94, 95);
+}
+.bi-envelope-at-fill {
+  color: white;
+}
+.email {
+  margin-left: 95px;
+}
+.body {
+  color: black;
+}
+.active {
+  background-color: antiquewhite;
+  font-size: 20px;
+}

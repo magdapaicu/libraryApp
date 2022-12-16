@@ -1,0 +1,153 @@
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  position: fixed;
+  border: 10px solid#161615;
+  background-color: white;
+}
+
+.formRegister {
+  margin-top: 150px;
+  margin-left: 350px;
+  width: 600px;
+  height: 550px;
+  background-color: rgb(144, 148, 148);
+  align-items: center;
+  border-radius: 25px 25px;
+}
+.firstname {
+  margin-top: 30px;
+}
+.btn-primary {
+  margin-top: 10px;
+}
+.clearButton {
+  margin-top: 10px;
+}
+
+.divError {
+  margin-top: 20px;
+}
+.btn-danger {
+  margin-top: 12px;
+}
+.grid {
+  display: grid;
+  width: 500px;
+  grid-template-columns: 1fr 1fr;
+}
+.listPosts {
+  margin-top: 162px;
+  margin-left: 200px;
+}
+
+.filterDiv {
+  margin-top: 30px;
+}
+.textBox {
+  margin-top: 10px;
+}
+.nextPageButton,
+.btn-primary:hover,
+.btn-primary:active {
+  align-items: flex-end;
+  background-color: antiquewhite;
+  border-color: #997509;
+  height: 60px;
+  margin-top: 100px;
+  margin-left: 1000px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+.form-label {
+  margin-left: 20px;
+}
+.form-control {
+  margin-left: 20px;
+  width: max-content;
+}
+.submitButton {
+  background-color: rgb(104, 100, 104);
+  margin-top: 30px;
+  border-color: black;
+  width: 250px;
+}
+.text-danger {
+  margin-left: 20px;
+}
+.gender {
+  margin-left: 40px;
+}
+.mat-sidenav {
+  width: 200px;
+  align-items: end;
+}
+.a {
+  color: #f3f5f9;
+}
+.btn-primary {
+  --bs-btn-bg: #b79e61;
+  --bs-btn-border-color: #161615;
+  --bs-btn-hover-bg: #483d2e;
+}
+
+.navbar {
+  color: aliceblue;
+  height: 2 rem;
+}
+
+.bi-x-circle-fill {
+  color: rgb(219, 16, 16);
+  margin-right: 10px;
+}
+.homeButton {
+  --bs-btn-color: #ffffff;
+  color: #ffffff;
+  margin-left: 10px;
+}
+.homeButton:hover {
+  background-color: rgb(93, 94, 95);
+}
+.booksButton {
+  --bs-btn-color: #ffffff;
+  color: #ffffff;
+}
+.booksButton:hover {
+  background-color: rgb(93, 94, 95);
+}
+
+.usersButton {
+  --bs-btn-color: #ffffff;
+  color: #ffffff;
+}
+.usersButton:hover {
+  background-color: rgb(93, 94, 95);
+}
+
+.contactsButton {
+  --bs-btn-color: #ffffff;
+  color: #ffffff;
+}
+.contactsButton:hover {
+  background-color: rgb(93, 94, 95);
+}
+.bi-envelope-at-fill {
+  color: white;
+}
+.email {
+  margin-left: 700px;
+}
+.body {
+  color: black;
+}
+.active {
+  background-color: antiquewhite;
+  font-size: 20px;
+}
+.snackBarPanelClass {
+  background-color: rgb(153, 50, 50);
+}
+.snackBarPanelClass.mat-mdc-snack-bar-container {
+  background-color: #f9f9f9;
+}

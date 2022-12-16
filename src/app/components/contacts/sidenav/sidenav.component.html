@@ -1,0 +1,57 @@
+<mat-sidenav-container class="app-sidenav-container">
+  <mat-sidenav
+    #sidenav
+    class="app-sidenav mat-elevation-z24"
+    [opened]="!isScreenSmall"
+    [mode]="isScreenSmall ? 'over' : 'side'"
+  >
+    <mat-toolbar class="mat-elevation-z24"
+      ><span class="mat-toolbar-span">Books</span></mat-toolbar
+    >
+    <mat-nav-list *ngFor="let book of books">
+      <mat-list-item>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="25"
+          height="25"
+          fill="currentColor"
+          class="bi bi-book-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"
+          />
+        </svg>
+        <a
+          matLine
+          class="TitleLink"
+          [routerLink]="['/app-contacts', book.idBook]"
+        >
+          <span>{{ book.title }}</span>
+        </a>
+        <!-- <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="40"
+          height="40"
+          fill="currentColor"
+          class="bi bi-eye-fill"
+          viewBox="0 0 16 16"
+          (click)="clickBook()"
+        >
+          <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+          <path
+            d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"
+          />
+        </svg> -->
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <div class="app-sidenav-content">
+    <app-toolbar (toggleSidenav)="sidenav.toggle()"></app-toolbar>
+    <div class="wrapper">
+      <div></div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</mat-sidenav-container>

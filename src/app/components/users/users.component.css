@@ -1,0 +1,97 @@
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background-color: white;
+  position: fixed;
+  border: 10px solid#161615;
+}
+.table {
+  border: 2px;
+  margin-top: 100px;
+  max-width: 900px;
+  margin-left: 175px;
+  border-radius: 25px;
+}
+.tableStyles {
+  opacity: 0.2;
+}
+.td {
+  height: 50px;
+  font-weight: bold;
+  font-size: 20px;
+}
+.th {
+  font-weight: bold;
+  font-size: 25px;
+}
+.titleStyle {
+  margin-top: 100px;
+  margin-left: 50px;
+  width: 800px;
+  color: black;
+}
+.btn-primary {
+  background-color: rgb(83, 81, 77);
+  border-color: antiquewhite;
+}
+.navbar {
+  color: aliceblue;
+  height: 2 rem;
+  width: 100%;
+}
+
+.bi-x-circle-fill {
+  color: rgb(219, 16, 16);
+  margin-right: 10px;
+}
+.homeButton {
+  --bs-btn-color: #ffffff;
+  color: #ffffff;
+  margin-left: 10px;
+}
+.homeButton:hover {
+  background-color: rgb(93, 94, 95);
+}
+.booksButton {
+  --bs-btn-color: #ffffff;
+  color: #ffffff;
+}
+.booksButton:hover {
+  background-color: rgb(93, 94, 95);
+}
+.usersButton {
+  --bs-btn-color: #ffffff;
+  color: #ffffff;
+}
+.usersButton:hover {
+  background-color: rgb(93, 94, 95);
+}
+.contactsButton {
+  --bs-btn-color: #ffffff;
+  color: #ffffff;
+}
+.contactsButton:hover {
+  background-color: rgb(93, 94, 95);
+}
+.bi-envelope-at-fill {
+  color: white;
+}
+.email {
+  margin-left: 700px;
+}
+.body {
+  color: black;
+}
+.bi-trash3-fill {
+  margin-left: 8px;
+  color: red;
+}
+.example-viewport {
+  height: 600px;
+  width: 500px;
+  border: 1px solid black;
+}
+.grid {
+  columns: 2;
+}

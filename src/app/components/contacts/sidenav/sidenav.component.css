@@ -1,0 +1,38 @@
+.app-sidenav-container {
+  /* width: 100%; */
+  height: 100%;
+  position: fixed;
+  /* background-image: url("src\assets\images\register.png"); */
+  background-color: white;
+  border: 10px solid#161615;
+  padding: 0;
+}
+.app-sidenav-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+.app-sidenav {
+  width: 300px;
+  background-color: rgb(129, 124, 124);
+}
+.mat-toolbar {
+  height: 73px;
+  background-color: black;
+}
+.mat-toolbar-span {
+  margin-top: 4px;
+  font-size: 30px;
+  color: white;
+}
+.wrapper {
+  margin: 50px;
+}
+.TitleLink {
+  color: black;
+  font-size: 25px;
+  text-decoration: none;
+}
+.bi-eye-fill {
+  margin-left: 10px;
+}

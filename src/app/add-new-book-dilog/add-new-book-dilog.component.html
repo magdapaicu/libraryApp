@@ -1,0 +1,89 @@
+<form [formGroup]="registerBook" class="formBook" #form="ngForm">
+  <div class="over-div-register">
+    <h1 class="title">Add a new book</h1>
+    <div>
+      <label for="title" class="form-label">Title </label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        [formControlName]="'title'"
+      />
+    </div>
+    <div>
+      <label for="author" class="form-label">Author</label>
+      <input
+        type="text"
+        class="form-control"
+        id="author"
+        [formControlName]="'author'"
+      />
+    </div>
+
+    <div>
+      <label for="title" class="form-label"> Publishing House </label>
+      <input
+        type="text"
+        class="form-control"
+        id="publishing"
+        [formControlName]="'publishing'"
+      />
+    </div>
+    <div>
+      <label for="countPages" class="form-label">Count Pages </label>
+      <input
+        type="text"
+        class="form-control"
+        id="countPages"
+        [formControlName]="'countPages'"
+      />
+    </div>
+    <div>
+      <label for="view" class="form-label">Review </label>
+      <input
+        type="text"
+        class="form-control"
+        id="view"
+        [formControlName]="'view'"
+      />
+    </div>
+    <button (click)="save()" class="btn btn-primary saveButton" type="submit">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-save-fill"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8.5 1.5A1.5 1.5 0 0 1 10 0h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h6c-.314.418-.5.937-.5 1.5v7.793L4.854 6.646a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0l3.5-3.5a.5.5 0 0 0-.708-.708L8.5 9.293V1.5z"
+        />
+      </svg>
+      Save
+    </button>
+    <button (click)="cancel()" class="btn btn-primary saveButton" type="submit">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-x-circle-fill"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
+        />
+      </svg>
+      Cancel
+    </button>
+  </div>
+  <div class="grid buttons">
+    <!-- <button (click)="giveMeBooks()" class="btn btn-primary grid giveButton">
+      Give me all books!
+    </button> -->
+  </div>
+
+  <!-- <div *ngIf="books.length === 0">{{ message }}</div> -->
+  <!-- <input type="file" (change)="onChangeFile($event)" /> -->
+</form>
