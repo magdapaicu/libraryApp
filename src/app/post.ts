@@ -5,7 +5,7 @@ export class Post {
   lastname: string;
   email: string;
   mobile: string;
-  pwd: string;
+  password: string;
   rstpwd: string;
   gender: any;
   id?: string;

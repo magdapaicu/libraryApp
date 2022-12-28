@@ -6,6 +6,7 @@ import {
   OnInit,
   Output,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -20,6 +21,8 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { SharedSnack } from 'src/app/shared-snack';
 import { MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
 import { MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { AuthService } from '../login/auth.service';
+import { stringLength } from '@firebase/util';
 
 @Component({
   selector: 'app-register',
@@ -33,7 +36,8 @@ export class RegisterComponent implements OnInit {
     private postService: PostService,
     private router: Router,
     public dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private authService: AuthService
   ) {}
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
@@ -68,18 +72,14 @@ export class RegisterComponent implements OnInit {
   }
 
   registerForm = new FormGroup({
-    firstname: new FormControl('', [Validators.required]),
-    lastname: new FormControl(''),
+    firstname: new FormControl(' ', [Validators.required]),
+    lastname: new FormControl(' '),
     email: new FormControl(' '),
     mobile: new FormControl(' '),
     gender: new FormControl(' '),
-    pwd: new FormControl(' '),
+    password: new FormControl(' '),
     rstpwd: new FormControl(' '),
   });
-
-  get filterText() {
-    return this._filterText;
-  }
 
   set filterText(value: string) {
     this._filterText = value;
@@ -93,8 +93,7 @@ export class RegisterComponent implements OnInit {
       lastname: '',
       email: '',
       mobile: '',
-      gender: '',
-      pwd: '',
+      password: '',
       rstpwd: '',
     });
 
@@ -139,7 +138,7 @@ export class RegisterComponent implements OnInit {
   }
 
   get Password(): FormControl {
-    return this.registerForm.get('pwd') as FormControl;
+    return this.registerForm.get('password') as FormControl;
   }
 
   get ResetPassword(): FormControl {
@@ -190,7 +189,7 @@ export class RegisterComponent implements OnInit {
       email: editPost?.email,
       mobile: editPost?.mobile,
       gender: editPost?.gender,
-      pwd: editPost?.pwd,
+      password: editPost?.password,
       rstpwd: editPost?.rstpwd,
     });
     console.log(this.registerForm);
@@ -251,5 +250,17 @@ export class RegisterComponent implements OnInit {
   }
   goToLoginPage() {
     this.router.navigate(['app-login']);
+  }
+  onSubmitLogin(form: any) {
+    const email = this.registerForm.value.email;
+    const password = this.registerForm.value.password;
+    this.authService.signup(email!, password!).subscribe(
+      (respData) => {
+        console.log(respData);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

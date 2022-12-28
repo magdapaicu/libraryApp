@@ -62,6 +62,7 @@ import { LocatieComponent } from './locatie/locatie.component';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
+    FormsModule,
   ],
   providers: [PostService],
   bootstrap: [AppComponent],

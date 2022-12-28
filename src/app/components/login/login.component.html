@@ -48,30 +48,43 @@
       />
     </svg>
   </nav>
-  <form [formGroup]="loginForm" class="formRegister" #form="ngForm">
+  <form class="formRegister" #form="ngForm">
     <div class="loginForm">
-      <div class="col1">
-        <label for="firstname" class="form-label-username">Username</label>
+      <div class="col1 form-group">
+        <label for="e-mail" class="form-label">E-mail</label>
         <input
-          type="text"
+          type="email"
           class="form-control"
-          id="firstname"
-          name="firstname"
-          [formControlName]="'firstname'"
-          #firstName
+          id="email"
+          name="email"
+          ngModel
+          name="email"
+          required
+          email
         />
       </div>
-      <div class="col">
-        <label for="firstname" class="form-label">Password </label>
+      <div class="col form-group">
+        <label for="password" class="form-label">Password </label>
         <input
           type="password"
           class="form-control"
-          id="firstname"
-          [formControlName]="'firstname'"
+          id="password"
+          ngModel
+          name="password"
+          required
+          minlength="6"
         />
       </div>
-      <button type="submit" class="btn submitButton" (click)="loginButton()">
+      <button
+        type="submit"
+        class="btn submitButton"
+        [disabled]="!form.valid"
+        (click)="onSubmitButton(form)"
+      >
         Login
+      </button>
+      <button class="btn btn-primary submitButton" (click)="goToRegisterPage()">
+        Register
       </button>
     </div>
   </form>

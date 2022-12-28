@@ -1,6 +1,6 @@
 import { getTreeNoValidDataSourceError } from '@angular/cdk/tree';
 import { Component, Input, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DialogLogoutComponent } from 'src/app/dialog-logout/dialog-logout.component';
@@ -9,6 +9,7 @@ import { PostService } from 'src/app/services/post.service';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { BookServicesService } from 'src/app/services/book.service';
 import { Book } from 'src/app/book';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent {
     private router: Router,
     public dialog: MatDialog,
     private postService: PostService,
-    private bookService: BookServicesService
+    private bookService: BookServicesService,
+    private authService: AuthService
   ) {}
   ngOnInit() {
     this.postService.getfetchPosts().subscribe((post: Post[]) => {
@@ -68,14 +70,19 @@ export class LoginComponent {
     });
   }
 
-  loginButton() {
-    this.myUserName = (<HTMLInputElement>(
-      document.getElementById('firstname')
-    )).value;
-    if (this.myUserName === 'adm') {
-      this.goToUsersPage();
-    } else {
-      this.goToContactsPage();
+  onSubmitButton(form: NgForm) {
+    if (!form.value) {
+      return;
     }
+    const email = form.value.email;
+    const password = form.value.password;
+    this.authService.signup(email, password).subscribe(
+      (respData) => {
+        console.log(respData);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

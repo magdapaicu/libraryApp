@@ -10,9 +10,9 @@
     >
       New Book
     </button> -->
-    <!-- <button class="btn btn primary usersButton" (click)="goToUsersPage()">
+    <button class="btn btn primary usersButton" (click)="goToUsersPage()">
       Users
-    </button> -->
+    </button>
     <button class="btn btn primary usersButton" (click)="goToContactsPage()">
       Books
     </button>
@@ -67,6 +67,8 @@
         <input
           type="text"
           class="form-control"
+          ngModel
+          name="firstname"
           id="firstname"
           [formControlName]="'firstname'"
         />
@@ -82,6 +84,8 @@
         <label for="lastname" class="form-label">Last Name </label>
         <input
           type="text"
+          ngModel
+          name="lastname"
           class="form-control"
           id="lasttname"
           [formControlName]="'lastname'"
@@ -93,6 +97,8 @@
         <label for="mail" class="form-label">E-mail Address</label>
         <input
           type="text"
+          ngModel
+          name="email"
           class="form-control"
           id="mail"
           [formControlName]="'email'"
@@ -104,6 +110,8 @@
         <label for="mobileNumber" class="form-label">Mobile Number</label>
         <input
           type="text"
+          ngModel
+          name="mobile"
           class="form-control"
           id="mobileNumber"
           [formControlName]="'mobile'"
@@ -123,13 +131,28 @@
     </div>
     <div class="row">
       <div class="col">
-        <label for="pwd" class="form-label">Password</label>
-        <input type="password" class="form-control" id="pwd" />
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          ngModel
+          name="password"
+          minlength="6"
+          [formControlName]="'password'"
+        />
         <div class="form-text"></div>
       </div>
       <div class="col">
         <label for="rstpwd" class="form-label">Repeat Password</label>
-        <input type="password" class="form-control" id="rstpwd" />
+        <input
+          type="password"
+          class="form-control"
+          id="rstpwd"
+          ngModel
+          name="rstpwd"
+          [formControlName]="'rstpwd'"
+        />
         <div class="form-text"></div>
       </div>
     </div>
@@ -139,6 +162,7 @@
           <button
             type="submit"
             class="btn submitButton"
+            (click)="onSubmitLogin(form)"
             (click)="registerSubmited()"
           >
             Create an Account
