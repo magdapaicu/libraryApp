@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Post } from '../post';
+import { Post } from '../shared/post';
 import { RegisterComponent } from '../components/register/register.component';
 import { catchError, findIndex, map, tap, Observable, Subject } from 'rxjs';
 import { throwError } from 'rxjs';

@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { ComponentsComponent } from './components/components.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Post } from './post';
+import { Post } from './shared/post';
 import { PostService } from './services/post.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';

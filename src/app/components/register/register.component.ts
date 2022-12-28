@@ -11,14 +11,14 @@ import {
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Post } from 'src/app/post';
+import { Post } from 'src/app/shared/post';
 import { PostService } from 'src/app/services/post.service';
 import { Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogLogoutComponent } from 'src/app/dialog-logout/dialog-logout.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
-import { SharedSnack } from 'src/app/shared-snack';
+import { SharedSnack } from 'src/app/shared/shared-snack';
 import { MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
 import { MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { AuthService } from '../login/auth.service';

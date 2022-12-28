@@ -10,7 +10,7 @@ import {
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { BookServicesService } from 'src/app/services/book.service';
-import { Book } from 'src/app/book';
+import { Book } from 'src/app/shared/book';
 import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';

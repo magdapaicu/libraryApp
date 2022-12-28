@@ -4,11 +4,11 @@ import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DialogLogoutComponent } from 'src/app/dialog-logout/dialog-logout.component';
-import { Post } from 'src/app/post';
+import { Post } from 'src/app/shared/post';
 import { PostService } from 'src/app/services/post.service';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { BookServicesService } from 'src/app/services/book.service';
-import { Book } from 'src/app/book';
+import { Book } from 'src/app/shared/book';
 import { AuthService } from './auth.service';
 
 @Component({

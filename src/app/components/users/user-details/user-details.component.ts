@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Post } from 'src/app/post';
+import { Post } from 'src/app/shared/post';
 import { PostService } from 'src/app/services/post.service';
 
 @Component({

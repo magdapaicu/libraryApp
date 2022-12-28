@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Book } from 'src/app/book';
+import { Book } from 'src/app/shared/book';
 import { BookServicesService } from 'src/app/services/book.service';
 
 @Component({

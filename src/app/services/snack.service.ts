@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { SharedSnack } from '../shared-snack';
+import { SharedSnack } from '../shared/shared-snack';
 
 @Injectable({
   providedIn: 'root',

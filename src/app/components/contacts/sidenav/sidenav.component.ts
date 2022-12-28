@@ -1,7 +1,7 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { Book } from 'src/app/book';
+import { Book } from 'src/app/shared/book';
 import { BookServicesService } from 'src/app/services/book.service';
 
 const SMAL_WIDTH_BREAKPOINT = 720;

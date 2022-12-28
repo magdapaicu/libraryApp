@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Post } from 'src/app/post';
+import { Post } from 'src/app/shared/post';
 import { PostService } from 'src/app/services/post.service';
 import { DialogLogoutComponent } from 'src/app/dialog-logout/dialog-logout.component';
 import { MatDialog } from '@angular/material/dialog';
 import { BookServicesService } from 'src/app/services/book.service';
-import { Book } from 'src/app/book';
+import { Book } from 'src/app/shared/book';
 
 @Component({
   selector: 'app-users',

@@ -1,5 +1,5 @@
 import { Component, Injectable, ViewChild } from '@angular/core';
-import { Book } from 'src/app/book';
+import { Book } from 'src/app/shared/book';
 import { BookServicesService } from 'src/app/services/book.service';
 import { HttpClient } from '@angular/common/http';
 import { Form, FormGroup, NgForm } from '@angular/forms';
