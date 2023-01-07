@@ -15,7 +15,7 @@ export class AddNewBookDilogComponent {
     author: new FormControl(' '),
     publishing: new FormControl(' '),
     countPages: new FormControl(' '),
-    view: new FormControl(' '),
+    review: new FormControl(' '),
   });
   ngOnInit() {}
   save() {
@@ -27,7 +27,7 @@ export class AddNewBookDilogComponent {
       author: '',
       publishing: '',
       countPages: '',
-      view: '',
+      review: '',
     });
   }
 }

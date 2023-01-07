@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Book } from 'src/app/shared/book';
 import { BookServicesService } from 'src/app/services/book.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-main-content',
@@ -18,7 +19,8 @@ export class MainContentComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private bookService: BookServicesService,
-    private http: HttpClient
+    private http: HttpClient,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -39,4 +41,5 @@ export class MainContentComponent implements OnInit {
 
     console.log('A fost citita!');
   }
+  openDialog() {}
 }

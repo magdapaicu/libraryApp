@@ -11,6 +11,7 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainContentComponent } from './components/contacts/main-content/main-content.component';
 import { LocatieComponent } from './locatie/locatie.component';
+import { FPasswordComponent } from './f-password/f-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/app-register', pathMatch: 'full' },
@@ -63,6 +64,10 @@ const routes: Routes = [
   {
     path: 'app-book-display',
     component: BooksDisplayComponent,
+  },
+  {
+    path: 'app-f-password',
+    component: FPasswordComponent,
   },
   // {
   //   path: 'main-container',

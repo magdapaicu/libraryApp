@@ -103,6 +103,12 @@
           id="mail"
           [formControlName]="'email'"
         />
+        <div
+          class="form-text text-danger"
+          *ngIf="Email.errors?.['required'] && Email.touched"
+        >
+          Email is required !
+        </div>
       </div>
     </div>
     <div class="row">
@@ -141,7 +147,12 @@
           minlength="6"
           [formControlName]="'password'"
         />
-        <div class="form-text"></div>
+        <div
+          class="form-text text-danger"
+          *ngIf="Password.errors?.['required'] && Password.touched"
+        >
+          Password is required !
+        </div>
       </div>
       <div class="col">
         <label for="rstpwd" class="form-label">Repeat Password</label>

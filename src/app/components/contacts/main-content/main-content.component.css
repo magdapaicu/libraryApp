@@ -1,8 +1,18 @@
 .imagine {
-  background-image: url("src\assets\books.jpg");
-  width: 850px;
-  height: 500px;
+  background-image: url("src\assets\images\images.jpg");
+  width: 283px;
+  height: 185px;
 }
 .bi-eye {
   color: gray;
+}
+.add-new-review-button {
+  margin-left: 10px;
+  --bs-btn-bg: rgb(9, 95, 30);
+  --bs-btn-hover-bg: rgb(72, 109, 72);
+  border-color: black;
+  --bs-btn-active-bg: rgb(9, 95, 30);
+}
+.mat-acordion {
+  margin-top: 20px;
 }

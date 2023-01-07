@@ -2,19 +2,15 @@ import {
   Component,
   EventEmitter,
   Injectable,
-  Input,
   OnInit,
   Output,
   ViewChild,
-  ViewEncapsulation,
 } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { Post } from 'src/app/shared/post';
 import { PostService } from 'src/app/services/post.service';
 import { Router } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogLogoutComponent } from 'src/app/dialog-logout/dialog-logout.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
@@ -22,7 +18,6 @@ import { SharedSnack } from 'src/app/shared/shared-snack';
 import { MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
 import { MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { AuthService } from '../login/auth.service';
-import { stringLength } from '@firebase/util';
 
 @Component({
   selector: 'app-register',
@@ -49,6 +44,7 @@ export class RegisterComponent implements OnInit {
   _filterText: string = '';
   singleClick: boolean = false;
   wasClicked = true;
+  filterResult: Post[] = [];
   messageCreateAccount: SharedSnack;
   message: string;
   action: string;
@@ -58,26 +54,29 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.isFetching = true;
     this.postService.getfetchPosts().subscribe(
-      (posts) => {
-        this.isFetching = false;
-        this.loadedPosts = posts;
-        console.log(posts);
+      (post) => {
+        this.loadedPosts = post;
+        console.log(post);
+        const filterPost = this.loadedPosts.filter(
+          (posts) => posts.firstname == 'Ana'
+        );
+        console.log(
+          'Heloo aici este filtrarea ' + JSON.stringify(filterPost, null, ' ')
+        );
       },
       (error) => {
         this.error = error.message;
       }
     );
-
-    this.filteredPosts = this.loadedPosts;
   }
 
   registerForm = new FormGroup({
     firstname: new FormControl(' ', [Validators.required]),
     lastname: new FormControl(' '),
-    email: new FormControl(' '),
+    email: new FormControl(' ', [Validators.required]),
     mobile: new FormControl(' '),
     gender: new FormControl(' '),
-    password: new FormControl(' '),
+    password: new FormControl(' ', [Validators.required]),
     rstpwd: new FormControl(' '),
   });
 
@@ -114,7 +113,7 @@ export class RegisterComponent implements OnInit {
     //   verticalPosition: 'bottom',
     //   description: 'd',
     // };
-    this.openSnackBar('Successfully registered', ':))');
+    this.openSnackBar('Successfully registered', '');
   }
 
   get FirstName(): FormControl {
@@ -125,7 +124,7 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('lastname') as FormControl;
   }
 
-  get Emai(): FormControl {
+  get Email(): FormControl {
     return this.registerForm.get('email') as FormControl;
   }
 

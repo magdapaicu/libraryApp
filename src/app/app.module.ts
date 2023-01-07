@@ -31,6 +31,34 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { AddNewBookDilogComponent } from './add-new-book-dilog/add-new-book-dilog.component';
 import { LocatieComponent } from './locatie/locatie.component';
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
+import { getAuth } from 'firebase/auth';
+import { FPasswordComponent } from './f-password/f-password.component';
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: 'AIzaSyAu-j3XLcEra7fSzNEX_fwuqZsDMtzIwEY',
+  authDomain: 'angularapp-f143a.firebaseapp.com',
+  databaseURL: 'https://angularapp-f143a-default-rtdb.firebaseio.com',
+  projectId: 'angularapp-f143a',
+  storageBucket: 'angularapp-f143a.appspot.com',
+  messagingSenderId: '76197812124',
+  appId: '1:76197812124:web:ffb109617f18346c6d5a59',
+  measurementId: 'G-FLLW710DQP',
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth = getAuth(app);
+
+export { auth };
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +79,7 @@ import { LocatieComponent } from './locatie/locatie.component';
     LoginComponent,
     AddNewBookDilogComponent,
     LocatieComponent,
+    FPasswordComponent,
   ],
   imports: [
     BrowserModule,

@@ -129,7 +129,7 @@ export class BookComponent implements OnInit {
       author: updateBook?.author,
       publishing: updateBook?.publishing,
       countPages: updateBook?.countPages,
-      view: updateBook?.view,
+      view: updateBook?.review,
     });
   }
   goToNextPage() {

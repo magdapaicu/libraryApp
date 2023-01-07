@@ -3,6 +3,6 @@ export class Book {
   author: any;
   publishing: any;
   countPages: any;
-  view: any;
+  review: any;
   idBook: string;
 }

@@ -56,12 +56,6 @@
   width: 550px;
 }
 
-.btn-primary {
-  --bs-btn-bg: #b79e61;
-  --bs-btn-border-color: #161615;
-  --bs-btn-hover-bg: #483d2e;
-}
-
 .navbar {
   color: aliceblue;
   height: 2 rem;
