@@ -65,6 +65,18 @@ export class PostService {
       'https://angularapp-f143a-default-rtdb.firebaseio.com/posts.json'
     );
   }
+
+  updatePost(id: string, form: any) {
+    this.http
+      .put(
+        'https://angularapp-f143a-default-rtdb.firebaseio.com/posts/' +
+          id +
+          '.json',
+        form
+      )
+      .subscribe();
+  }
+
   getPostById(id: string): Observable<Post> {
     return this.http
       .get<Post>(

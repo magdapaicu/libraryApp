@@ -1,0 +1,40 @@
+<form [formGroup]="editBook" class="editBook">
+  <div class="divGol"></div>
+  <div>
+    <label for="name" class="form-label">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      [formControlName]="'name'"
+    />
+  </div>
+  <div>
+    <label for="lastname" class="form-label">Last Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="last-name"
+      [formControlName]="'lastname'"
+    />
+  </div>
+  <div>
+    <label for="email" class="form-label">Email</label>
+    <input
+      type="text"
+      class="form-control"
+      id="email"
+      [formControlName]="'email'"
+    />
+  </div>
+  <div>
+    <label for="phone" class="form-label">Phone</label>
+    <input
+      type="text"
+      class="form-control"
+      id="phone"
+      [formControlName]="'phone'"
+    />
+  </div>
+  <button class="btn btn-primary edit-button">Update</button>
+</form>

@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PostService } from 'src/app/services/post.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AddNewBookDilogComponent } from 'src/app/add-new-book-dilog/add-new-book-dilog.component';
+import { AddNewBookDilogComponent } from 'src/app/components/book/add-new-book-dilog/add-new-book-dilog.component';
 
 @Component({
   selector: 'app-toolbar',

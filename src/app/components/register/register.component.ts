@@ -49,25 +49,30 @@ export class RegisterComponent implements OnInit {
   message: string;
   action: string;
   config: MatSnackBarConfig;
+  genders = ['Male', 'Female'];
 
   @Output() isActiveChange: EventEmitter<boolean>;
   ngOnInit() {
     this.isFetching = true;
-    this.postService.getfetchPosts().subscribe(
-      (post) => {
-        this.loadedPosts = post;
-        console.log(post);
-        const filterPost = this.loadedPosts.filter(
-          (posts) => posts.firstname == 'Ana'
-        );
-        console.log(
-          'Heloo aici este filtrarea ' + JSON.stringify(filterPost, null, ' ')
-        );
-      },
-      (error) => {
-        this.error = error.message;
-      }
-    );
+    this.postService.getfetchPosts().subscribe((post) => {
+      this.loadedPosts = post;
+      console.log(this.loadedPosts);
+    });
+    // this.postService.getfetchPosts().subscribe(
+    //   (post) => {
+    //     this.loadedPosts = post;
+    //     console.log(post);
+    //     const filterPost = this.loadedPosts.filter(
+    //       (posts) => posts.firstname == 'Ana'
+    //     );
+    //     console.log(
+    //       'Heloo aici este filtrarea ' + JSON.stringify(filterPost, null, ' ')
+    //     );
+    //   },
+    //   (error) => {
+    //     this.error = error.message;
+    //   }
+    // );
   }
 
   registerForm = new FormGroup({
@@ -87,6 +92,7 @@ export class RegisterComponent implements OnInit {
 
   registerSubmited() {
     this.postService.createAndStorePost(this.registerForm.getRawValue());
+
     this.registerForm.patchValue({
       firstname: '',
       lastname: '',

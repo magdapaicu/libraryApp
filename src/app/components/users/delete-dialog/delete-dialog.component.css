@@ -1,0 +1,15 @@
+.btn-primary {
+  width: 100px;
+  margin-top: 40px;
+  margin-left: 35px;
+}
+.delete-paragraph {
+  margin-top: 40px;
+  margin-left: 25px;
+}
+.yes-button {
+  --bs-btn-bg: rgb(141, 21, 21);
+  --bs-btn-hover-bg: rgb(202, 54, 54);
+  --bs-btn-border-color: black;
+  --bs-btn-active-bg: rgb(216, 32, 32);
+}

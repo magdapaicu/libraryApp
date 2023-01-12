@@ -7,11 +7,15 @@ import {
   ViewChild,
   Inject,
 } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
-import { Observable } from 'rxjs';
+import {
+  FormArray,
+  FormArrayName,
+  FormControl,
+  FormGroup,
+  NgForm,
+} from '@angular/forms';
 import { BookServicesService } from 'src/app/services/book.service';
 import { Book } from 'src/app/shared/book';
-import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogLogoutComponent } from 'src/app/dialog-logout/dialog-logout.component';
@@ -48,7 +52,7 @@ export class BookComponent implements OnInit {
     author: new FormControl(' '),
     publishing: new FormControl(' '),
     countPages: new FormControl(' '),
-    view: new FormControl(''),
+    review: new FormArray([]),
   });
 
   get Title(): FormControl {
@@ -63,9 +67,10 @@ export class BookComponent implements OnInit {
   get CountPages(): FormControl {
     return this.registerBook.get('countPages') as FormControl;
   }
-  get View(): FormControl {
-    return this.registerBook.get('view') as FormControl;
+  get View(): FormArray {
+    return this.registerBook.get('review') as FormArray;
   }
+
   save() {
     if (!this.editButton)
       this.bookService.createPostBook(this.registerBook.getRawValue());
@@ -108,13 +113,13 @@ export class BookComponent implements OnInit {
       return book.idBook === id;
     });
     console.log(this.registerBook);
-    // this.registerBook.patchValue({
-    //   title: updateBook?.title,
-    //   author: updateBook?.author,
-    //   publishing: updateBook?.publishing,
-    //   countPages: updateBook?.countPages,
-    // });
-    // console.log(this.registerBook);
+    this.registerBook.patchValue({
+      title: updateBook?.title,
+      author: updateBook?.author,
+      publishing: updateBook?.publishing,
+      countPages: updateBook?.countPages,
+    });
+    console.log(this.registerBook);
   }
 
   onEditBook(id: any) {
@@ -124,13 +129,13 @@ export class BookComponent implements OnInit {
     });
     console.log(updateBook);
     this.editButton = true;
-    this.registerBook.setValue({
-      title: updateBook?.title,
-      author: updateBook?.author,
-      publishing: updateBook?.publishing,
-      countPages: updateBook?.countPages,
-      view: updateBook?.review,
-    });
+    // this.registerBook.setValue({
+    //   title: updateBook?.title,
+    //   author: updateBook?.author,
+    //   publishing: updateBook?.publishing,
+    //   countPages: updateBook?.countPages,
+    //   review: updateBook?.review,
+    // });
   }
   goToNextPage() {
     this.router.navigate(['book-display-component']);

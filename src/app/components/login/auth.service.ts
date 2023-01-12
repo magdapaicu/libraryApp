@@ -72,7 +72,10 @@ export class AuthService {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        this.router.navigate(['/app-book']);
+        this.router.navigate(['app-contacts']);
+        if (email === 'adm@yahoo.com') {
+          this.router.navigate(['Users']);
+        }
       })
       .catch((error) => {
         const errorCode = error.code;

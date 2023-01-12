@@ -12,7 +12,53 @@
   --bs-btn-hover-bg: rgb(72, 109, 72);
   border-color: black;
   --bs-btn-active-bg: rgb(9, 95, 30);
+  margin-top: 20px;
 }
 .mat-acordion {
   margin-top: 20px;
+}
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+.firstControl {
+  margin-top: 10px;
+  width: 500px;
+  margin-left: 130px;
+}
+.nextReviews {
+  margin-top: 10px;
+  width: 500px;
+  margin-left: 130px;
+}
+.paragraf {
+  margin-left: 130px;
+  color: red;
+}
+.renunta-paragraf {
+  margin-left: 130px;
+  cursor: pointer;
+}
+.bi-check-circle {
+  margin-top: 24px;
+  margin-left: 5px;
+}
+.badge {
+  margin-left: 35px;
+}
+.text {
+  color: blue;
+}
+i {
+  font-size: 1.5rem;
+  padding-right: 0.1rem;
+  color: #b0c4de;
+}
+.filled {
+  color: #1e90ff;
+}
+.low {
+  color: #deb0b0;
+}
+.filled.low {
+  color: #ff1e1e;
 }

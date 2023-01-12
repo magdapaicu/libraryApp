@@ -1,7 +1,7 @@
 <div class="container">
   <nav class="navbar navbar-dark bg-black">
     <button (click)="goToRegisterPage()" class="btn btn primary homeButton">
-      Home
+      Register
     </button>
     <!-- <button
       [routerLinkActive]="'active'"
@@ -10,16 +10,16 @@
     >
       New Book
     </button> -->
-    <button class="btn btn primary usersButton" (click)="goToUsersPage()">
+    <!-- <button class="btn btn primary usersButton" (click)="goToUsersPage()">
       Users
     </button>
     <button class="btn btn primary usersButton" (click)="goToContactsPage()">
       Books
-    </button>
-    <button class="btn btn primary contactsButton" (click)="goToContactPage()">
+    </button> -->
+    <!-- <button class="btn btn primary contactsButton" (click)="goToContactPage()">
       Contacts
-    </button>
-    <div class="email">
+    </button> -->
+    <!-- <div class="email">
       <a href="mailto:keyur@gmail.com"
         ><svg
           xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +38,7 @@
           />
         </svg>
       </a>
-    </div>
+    </div> -->
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="35"
@@ -125,13 +125,19 @@
       </div>
       <div class="col gender">
         <div>Gender</div>
-        <div>
+        <!-- <div>
           <input type="radio" value="m" id="male" />
           <label class="form-check-label" for="male">Male</label>
         </div>
         <div>
           <input type="radio" value="f" id="female" />
           <label class="form-check-label" for="female">Female</label>
+        </div> -->
+        <div *ngFor="let gender of genders">
+          <label for="gender">
+            <input type="radio" [value]="gender" formControlName="gender" />
+            {{ gender }}
+          </label>
         </div>
       </div>
     </div>
@@ -190,61 +196,61 @@
     </div>
 
     <!-- <div class="row">
-          <div class="d-grid col-6 offset-3">
-            <button class="btn btn-primary" (click)="onFetchPosts()">
-              Fetch Posts
-            </button>
-  
-            <button
-              class="btn btn-danger clearButton"
-              [disabled]="loadedPosts.length < 1"
-              (click)="onClearPosts()"
-            >
-              Clear User
-            </button>
-          </div>
-        </div> -->
+      <div class="d-grid col-6 offset-3">
+        <button class="btn btn-primary" (click)="onFetchPosts()">
+          Fetch Posts
+        </button>
+
+        <button
+          class="btn btn-danger clearButton"
+          [disabled]="loadedPosts.length < 1"
+          (click)="onClearPosts()"
+        >
+          Clear User
+        </button>
+      </div>
+    </div> -->
 
     <!-- <div class="alert alert-danger divError" *ngIf="error">
       <h1>An Error Occurred!</h1>
       <p>{{ error }}</p>
-    </div> -->
+    </div>
+  </form> -->
+
+    <!-- <div class="listPosts">
+    <p *ngIf="loadedPosts.length < 1 && !isFetching">No posts available !</p>
+    <ul class="list-group" *ngIf="loadedPosts.length >= 1 && !isFetching">
+      <li class="list-group-item" *ngFor="let post of loadedPosts">
+        <div class="grid">
+          <h2>{{ post.firstname }}</h2>
+        </div>
+        <p>{{ post.lastname }}</p>
+        <div>
+          <button class="btn btn-primary" (click)="onDeletePost(post.id)">
+            Delete
+          </button>
+          <button class="btn btn-danger" (click)="onEditPost(post.id)">
+            Edit
+          </button>
+        </div>
+      </li>
+    </ul>
+    <p *ngIf="isFetching && !error">Loading...</p>
+  </div>
+</div> -->
+
+    <!-- <div class="grid filterDiv">
+  <div class="grid-row textBox">
+    <input
+      type="text"
+      placeholder="Search by firstname."
+      [(ngModel)]="filterText"
+    />
+  </div>
+  <div class="grid-row">
+    <button class="btn btn-primary">Sort</button>
+    <li class="list-group-item" *ngFor="let post of loadedPosts"></li>
+  </div>
+</div> -->
   </form>
-
-  <!-- <div class="listPosts">
-      <p *ngIf="loadedPosts.length < 1 && !isFetching">No posts available !</p>
-      <ul class="list-group" *ngIf="loadedPosts.length >= 1 && !isFetching">
-        <li class="list-group-item" *ngFor="let post of loadedPosts">
-          <div class="grid">
-            <h2>{{ post.firstname }}</h2>
-          </div>
-          <p>{{ post.lastname }}</p>
-          <div>
-            <button class="btn btn-primary" (click)="onDeletePost(post.id)">
-              Delete
-            </button>
-            <button class="btn btn-danger" (click)="onEditPost(post.id)">
-              Edit
-            </button>
-          </div>
-        </li>
-      </ul>
-      <p *ngIf="isFetching && !error">Loading...</p>
-  
-    </div>
-    </div> -->
-
-  <!-- <div class="grid filterDiv">
-    <div class="grid-row textBox">
-      <input
-        type="text"
-        placeholder="Search by firstname."
-        [(ngModel)]="filterText"
-      />
-    </div>
-    <div class="grid-row">
-      <button class="btn btn-primary">Sort</button>
-      <li class="list-group-item" *ngFor="let post of loadedPosts"></li>
-    </div>
-    </div> -->
 </div>

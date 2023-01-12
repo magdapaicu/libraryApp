@@ -5,4 +5,5 @@ export class Book {
   countPages: any;
   review: any;
   idBook: string;
+  stringReviews: string;
 }

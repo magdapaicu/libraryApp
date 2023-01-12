@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { BookServicesService } from '../services/book.service';
+import { BookServicesService } from '../../../services/book.service';
 
 @Component({
   selector: 'app-add-new-book-dilog',

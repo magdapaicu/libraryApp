@@ -28,7 +28,7 @@ import { MainContentComponent } from './components/contacts/main-content/main-co
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './components/login/login.component';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { AddNewBookDilogComponent } from './add-new-book-dilog/add-new-book-dilog.component';
+import { AddNewBookDilogComponent } from './components/book/add-new-book-dilog/add-new-book-dilog.component';
 import { LocatieComponent } from './locatie/locatie.component';
 
 // Import the functions you need from the SDKs you need
@@ -36,6 +36,11 @@ import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { getAuth } from 'firebase/auth';
 import { FPasswordComponent } from './f-password/f-password.component';
+import { AddReviewDialogComponent } from './components/contacts/main-content/add-review-dialog/add-review-dialog.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditDialogComponent } from './components/users/edit-dialog/edit-dialog.component';
+import { DeleteDialogComponent } from './components/users/delete-dialog/delete-dialog.component';
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -80,6 +85,9 @@ export { auth };
     AddNewBookDilogComponent,
     LocatieComponent,
     FPasswordComponent,
+    AddReviewDialogComponent,
+    EditDialogComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,6 +100,7 @@ export { auth };
     MaterialModule,
     FlexLayoutModule,
     FormsModule,
+    NgbModule,
   ],
   providers: [PostService],
   bootstrap: [AppComponent],

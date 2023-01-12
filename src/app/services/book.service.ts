@@ -74,4 +74,12 @@ export class BookServicesService {
       )
       .subscribe();
   }
+  saveReview(form: any) {
+    return this.http
+      .post(
+        'https://angularapp-f143a-default-rtdb.firebaseio.com/books.json',
+        form.value
+      )
+      .subscribe((book) => console.log(book));
+  }
 }

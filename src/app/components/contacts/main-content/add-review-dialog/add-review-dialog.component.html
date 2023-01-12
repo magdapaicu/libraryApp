@@ -1,0 +1,14 @@
+<div class="titlu-dialog">
+  <p>Add a review for this book</p>
+</div>
+<form [formGroup]="reviewForm">
+  <textarea
+    name="review"
+    id="review"
+    rows="3"
+    cols="40"
+    class="review-textarea"
+    formArrayName="reviews"
+  ></textarea>
+  <button class="btn btn-primary save-button">Save</button>
+</form>
