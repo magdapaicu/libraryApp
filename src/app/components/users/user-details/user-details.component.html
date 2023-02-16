@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container scroll-table">
   <nav class="navbar navbar-dark bg-black">
     <button (click)="goToRegisterPage()" class="btn btn primary homeButton">
       Register
@@ -58,11 +58,7 @@
   <form class="formUserDetails grid">
     <div class="grid-column:1">
       <div *ngFor="let user of users" class="title">
-        <p>
-          Salut, ati intrat pe profilul urmatorului user
-          <br />
-          {{ user.firstname }} {{ user.lastname }}
-        </p>
+        <p>{{ user.firstname }} {{ user.lastname }}</p>
       </div>
     </div>
 
@@ -93,4 +89,30 @@
       <div>Email:{{ user.email }}</div>
     </div>
   </form>
+  <button class="btn btn-primary lista-button" (click)="openBookList()">
+    {{ isOpen ? "Inchide Lista" : "Deschide Lista" }}
+  </button>
+  <app-book-list *ngIf="isOpen"></app-book-list>
+  <button class="btn btn-primary my-button">My List</button>
+  <div class="scroll-table">
+    <table class="table table-bordered">
+      <thead class="thead">
+        <tr>
+          <th class="th">Title</th>
+          <th class="th">Author</th>
+          <th class="th">Publishing</th>
+        </tr>
+      </thead>
+      <ng-container>
+        <tbody class="tbody" *ngFor="let book of selectedBook">
+          <td class="td">{{ book.title }}</td>
+          <td class="td">{{ book.author }}</td>
+          <td class="td">{{ book.publishing }}</td>
+
+          <td class="td"></td>
+          <td *ngIf="book.type === 'love' || book.type === 'action'"></td>
+        </tbody>
+      </ng-container>
+    </table>
+  </div>
 </div>

@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { ComponentsComponent } from './components/components.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Post } from './shared/post';
 import { PostService } from './services/post.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -27,9 +26,9 @@ import { ToolbarComponent } from './components/contacts/toolbar/toolbar.componen
 import { MainContentComponent } from './components/contacts/main-content/main-content.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './components/login/login.component';
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { AddNewBookDilogComponent } from './components/book/add-new-book-dilog/add-new-book-dilog.component';
 import { LocatieComponent } from './locatie/locatie.component';
+import { SidenavServicesService } from './components/users/user-details/sidenav-services.service';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
@@ -40,6 +39,10 @@ import { AddReviewDialogComponent } from './components/contacts/main-content/add
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditDialogComponent } from './components/users/edit-dialog/edit-dialog.component';
 import { DeleteDialogComponent } from './components/users/delete-dialog/delete-dialog.component';
+import { SearchButtonComponent } from './components/users/user-details/search-button/search-button.component';
+import { EditDialogBookComponent } from './components/book/edit-dialog-book/edit-dialog-book.component';
+import { SidenavBooksDetailsComponent } from './shared/sidenav-books-details/sidenav-books-details.component';
+import { BookListComponent } from './components/users/book-list/book-list.component';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -88,6 +91,10 @@ export { auth };
     AddReviewDialogComponent,
     EditDialogComponent,
     DeleteDialogComponent,
+    SearchButtonComponent,
+    EditDialogBookComponent,
+    SidenavBooksDetailsComponent,
+    BookListComponent,
   ],
   imports: [
     BrowserModule,
@@ -102,7 +109,7 @@ export { auth };
     FormsModule,
     NgbModule,
   ],
-  providers: [PostService],
+  providers: [PostService, SidenavServicesService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

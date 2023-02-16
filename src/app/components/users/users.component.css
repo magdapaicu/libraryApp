@@ -113,3 +113,7 @@
 .update-button {
   margin-left: 150px;
 }
+.scroll-table {
+  height: 500px;
+  overflow: auto;
+}

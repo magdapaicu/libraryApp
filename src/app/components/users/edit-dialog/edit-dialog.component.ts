@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { identifierName } from '@angular/compiler';
-import { Component, Input } from '@angular/core';
-import { ControlContainer, FormControl, FormGroup } from '@angular/forms';
+import { Inject } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PostService } from 'src/app/services/post.service';
 import { Post } from 'src/app/shared/post';
 
@@ -11,25 +12,44 @@ import { Post } from 'src/app/shared/post';
   styleUrls: ['./edit-dialog.component.css'],
 })
 export class EditDialogComponent {
-  constructor(private http: HttpClient, private postService: PostService) {}
-  editBook = new FormGroup({
-    name: new FormControl(),
-    lastname: new FormControl(),
-    email: new FormControl(),
-    phone: new FormControl(),
+  person: any;
+
+  constructor(
+    private http: HttpClient,
+    private postService: PostService,
+    public dialogRef: MatDialogRef<EditDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
+
+  editPost = new FormGroup({
+    firstname: new FormControl(''),
+    lastname: new FormControl(''),
+    email: new FormControl(''),
+    mobile: new FormControl(''),
   });
-  loadedPosts: Post[] = [];
-  ngOnInit() {
-    this.postService.getfetchPosts().subscribe((post) => {
-      this.loadedPosts = post;
-      console.log(this.loadedPosts);
+
+  populateForm(person: {
+    id: any;
+    firstname: any;
+    lastname: any;
+    email: any;
+    mobile: any;
+  }) {
+    this.editPost.patchValue({
+      firstname: person.firstname,
+      lastname: person.lastname,
+      email: person.email,
+      mobile: person.mobile,
     });
   }
 
-  onEditPost(id: any) {
-    let editPost = this.loadedPosts.find((post) => {
-      post.id == id;
-      console.log(editPost);
-    });
+  ngOnInit() {
+    this.person = this.data.personData;
+    this.populateForm(this.person);
+  }
+
+  updatePost() {
+    this.postService.updatePost(this.person.id, this.editPost);
+    this.dialogRef.close();
   }
 }

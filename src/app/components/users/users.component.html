@@ -68,240 +68,59 @@
       </thead> -->
 
       <ng-container>
-        <table class="table">
-          <tr>
-            <th class="th">Name</th>
-            <th class="th">Last Name</th>
-            <th class="th">Email</th>
-            <th class="th">Phone</th>
-            <th class="th">Options</th>
-          </tr>
-          <tbody class="tbody" *ngFor="let post of postList">
-            <td class="td">{{ post.firstname }}</td>
-            <td class="td">{{ post.lastname }}</td>
-            <td class="td">{{ post.email }}</td>
-            <td class="td">{{ post.mobile }}</td>
+        <div class="scroll-table">
+          <table class="table">
+            <tr>
+              <th class="th">Name</th>
+              <th class="th">Last Name</th>
+              <th class="th">Email</th>
+              <th class="th">Phone</th>
+              <th class="th">Gender</th>
+              <th class="th">Options</th>
+            </tr>
+            <tbody class="tbody" *ngFor="let post of postList">
+              <td class="td">{{ post.firstname }}</td>
+              <td class="td">{{ post.lastname }}</td>
+              <td class="td">{{ post.email }}</td>
+              <td class="td">{{ post.mobile }}</td>
+              <td class="td">{{ post.gender }}</td>
 
-            <td>
-              <button
-                class="btn btn-primary"
-                routerLink="/Users/UserDetails/{{ post.id }}"
-              >
-                Go to profile!
-              </button>
+              <td>
+                <button
+                  class="btn btn-primary"
+                  routerLink="/Users/UserDetails/{{ post.id }}"
+                >
+                  Go to profile!
+                </button>
 
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                fill="currentColor"
-                cursor="pointer"
-                class="bi bi-trash3-fill"
-                viewBox="0 0 16 16"
-                (click)="onDeletePost(post.id)"
-              >
-                <path
-                  d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"
-                />
-              </svg>
-              <button class="btn btn-primary" (click)="onEditPost(post.id)">
-                Update
-              </button>
-            </td>
-          </tbody>
-        </table>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="40"
+                  height="40"
+                  fill="currentColor"
+                  cursor="pointer"
+                  class="bi bi-trash3-fill"
+                  viewBox="0 0 16 16"
+                  (click)="openDeleteDialog(post.id)"
+                >
+                  <path
+                    d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"
+                  />
+                </svg>
+                <button
+                  class="btn btn-primary"
+                  (click)="openEditDialog(post.id)"
+                >
+                  Update
+                </button>
+              </td>
+            </tbody>
+          </table>
+        </div>
       </ng-container>
     </table>
-
-    <ng-container> </ng-container>
+    <app-search-button
+      (chooseButton)="selectedButtonParentData($event)"
+    ></app-search-button>
   </div>
-  <form [formGroup]="registerForm" class="formRegister" #form="ngForm">
-    <div class="row-g-0 titleRegister">
-      <div class="col text-center">
-        <!-- <span><h2>Register</h2></span> -->
-      </div>
-    </div>
-    <div class="row firstname">
-      <div class="col">
-        <label for="firstname" class="form-label">First Name </label>
-        <input
-          type="text"
-          class="form-control"
-          ngModel
-          name="firstname"
-          id="firstname"
-          [formControlName]="'firstname'"
-        />
-        <div
-          class="form-text text-danger"
-          *ngIf="FirstName.errors?.['required'] && FirstName.touched"
-        >
-          <!--  question mark Daca required este adevarat atunci nu ne afiseaza nmk-->
-          First Name is required.
-        </div>
-      </div>
-      <div class="col">
-        <label for="lastname" class="form-label">Last Name </label>
-        <input
-          type="text"
-          ngModel
-          name="lastname"
-          class="form-control"
-          id="lasttname"
-          [formControlName]="'lastname'"
-        />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col mb-3">
-        <label for="mail" class="form-label">E-mail Address</label>
-        <input
-          type="text"
-          ngModel
-          name="email"
-          class="form-control"
-          id="mail"
-          [formControlName]="'email'"
-        />
-        <div
-          class="form-text text-danger"
-          *ngIf="Email.errors?.['required'] && Email.touched"
-        >
-          Email is required !
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <label for="mobileNumber" class="form-label">Mobile Number</label>
-        <input
-          type="text"
-          ngModel
-          name="mobile"
-          class="form-control"
-          id="mobileNumber"
-          [formControlName]="'mobile'"
-        />
-      </div>
-      <div class="col gender">
-        <div>Gender</div>
-        <!-- <div>
-          <input type="radio" value="m" id="male" />
-          <label class="form-check-label" for="male">Male</label>
-        </div>
-        <div>
-          <input type="radio" value="f" id="female" />
-          <label class="form-check-label" for="female">Female</label>
-        </div> -->
-        <div *ngFor="let gender of genders">
-          <label for="gender">
-            <input type="radio" [value]="gender" formControlName="gender" />
-            {{ gender }}
-          </label>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <label for="password" class="form-label">Password</label>
-        <input
-          type="password"
-          class="form-control"
-          id="password"
-          ngModel
-          name="password"
-          minlength="6"
-          [formControlName]="'password'"
-        />
-        <div
-          class="form-text text-danger"
-          *ngIf="Password.errors?.['required'] && Password.touched"
-        >
-          Password is required !
-        </div>
-      </div>
-      <div class="col">
-        <label for="rstpwd" class="form-label">Repeat Password</label>
-        <input
-          type="password"
-          class="form-control"
-          id="rstpwd"
-          ngModel
-          name="rstpwd"
-          [formControlName]="'rstpwd'"
-        />
-        <div class="form-text"></div>
-      </div>
-    </div>
-    <button class="btn btn-primary update-button" (click)="updateClick()">
-      Update
-    </button>
-    <!-- <div class="row">
-      <div class="d-grid col-6 offset-3">
-        <button class="btn btn-primary" (click)="onFetchPosts()">
-          Fetch Posts
-        </button>
-
-        <button
-          class="btn btn-danger clearButton"
-          [disabled]="loadedPosts.length < 1"
-          (click)="onClearPosts()"
-        >
-          Clear User
-        </button>
-      </div>
-    </div> -->
-
-    <!-- <div class="alert alert-danger divError" *ngIf="error">
-      <h1>An Error Occurred!</h1>
-      <p>{{ error }}</p>
-    </div>
-  </form> -->
-
-    <!-- <div class="listPosts">
-    <p *ngIf="loadedPosts.length < 1 && !isFetching">No posts available !</p>
-    <ul class="list-group" *ngIf="loadedPosts.length >= 1 && !isFetching">
-      <li class="list-group-item" *ngFor="let post of loadedPosts">
-        <div class="grid">
-          <h2>{{ post.firstname }}</h2>
-        </div>
-        <p>{{ post.lastname }}</p>
-        <div>
-          <button class="btn btn-primary" (click)="onDeletePost(post.id)">
-            Delete
-          </button>
-          <button class="btn btn-danger" (click)="onEditPost(post.id)">
-            Edit
-          </button>
-        </div>
-      </li>
-    </ul>
-    <p *ngIf="isFetching && !error">Loading...</p>
-  </div>
-</div> -->
-
-    <!-- <div class="grid filterDiv">
-  <div class="grid-row textBox">
-    <input
-      type="text"
-      placeholder="Search by firstname."
-      [(ngModel)]="filterText"
-    />
-  </div>
-  <div class="grid-row">
-    <button class="btn btn-primary">Sort</button>
-    <li class="list-group-item" *ngFor="let post of loadedPosts"></li>
-  </div>
-</div> -->
-  </form>
-
-  <!-- <div>
-  <button class="btn btn-primary" (click)="goToNextPage()">
-    Go to Next Page
-  </button>
-</div> -->
 </div>
-
-<!-- <cdk-virtual-scroll-viewport *cdkVirtualFor="let post of postList">
-  {{ post.firstname }}
-</cdk-virtual-scroll-viewport> -->

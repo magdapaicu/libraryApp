@@ -10,18 +10,9 @@ import { PostService } from 'src/app/services/post.service';
 })
 export class DeleteDialogComponent {
   constructor(private http: HttpClient) {}
-  delete: boolean = false;
-  yes: UsersComponent;
-  onDeletePost(id: any) {
-    this.http
-      .delete(
-        'https://angularapp-f143a-default-rtdb.firebaseio.com/posts/' +
-          id +
-          '.json'
-      )
-      .subscribe();
-  }
-  checkTrue() {
-    this.delete = true;
+  deletePost: boolean = false;
+  changeDelete() {
+    this.deletePost = true;
+    console.log(this.deletePost);
   }
 }

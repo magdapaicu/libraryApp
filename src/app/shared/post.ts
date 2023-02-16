@@ -6,5 +6,5 @@ export class Post {
   password: string;
   rstpwd: string;
   gender: any;
-  public id?: string;
+  id?: string;
 }

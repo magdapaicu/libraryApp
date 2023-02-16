@@ -1,4 +1,4 @@
-<form [formGroup]="editBook" class="editBook">
+<form [formGroup]="editPost" class="editBook">
   <div class="divGol"></div>
   <div>
     <label for="name" class="form-label">Name</label>
@@ -6,7 +6,7 @@
       type="text"
       class="form-control"
       id="name"
-      [formControlName]="'name'"
+      [formControlName]="'firstname'"
     />
   </div>
   <div>
@@ -33,8 +33,10 @@
       type="text"
       class="form-control"
       id="phone"
-      [formControlName]="'phone'"
+      [formControlName]="'mobile'"
     />
   </div>
-  <button class="btn btn-primary edit-button">Update</button>
+  <button class="btn btn-primary edit-button" (click)="updatePost()">
+    Update
+  </button>
 </form>

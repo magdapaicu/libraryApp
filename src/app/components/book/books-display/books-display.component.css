@@ -32,13 +32,14 @@
   opacity: 0.2;
 }
 .td {
-  height: 50px;
-  font-weight: bold;
+  height: 20px;
   font-size: 20px;
+  width: 210px;
 }
+
 .th {
   font-weight: bold;
-  font-size: 25px;
+  font-size: 20px;
 }
 .titleStyle {
   margin-top: 100px;
@@ -113,4 +114,8 @@
 .update-button {
   margin-left: 160px;
   margin-top: 15px;
+}
+.scroll-table {
+  height: 472px;
+  overflow: auto;
 }

@@ -1,11 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Post } from 'src/app/shared/post';
 import { PostService } from 'src/app/services/post.service';
 import { DialogLogoutComponent } from 'src/app/dialog-logout/dialog-logout.component';
 import { MatDialog } from '@angular/material/dialog';
-import { BookServicesService } from 'src/app/services/book.service';
 import { Book } from 'src/app/shared/book';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import {
@@ -18,6 +16,7 @@ import {
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { AuthService } from '../login/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -43,31 +42,29 @@ export class UsersComponent implements OnInit {
   delete: DeleteDialogComponent;
   id: any;
   genders = ['Male', 'Female'];
+  deletePost = false;
+  postListFull: Post[] = [];
+  courseChoose: string = 'All';
 
   constructor(
     private router: Router,
-    private _changeDetectorRef: ChangeDetectorRef,
     private postService: PostService,
-    private route: ActivatedRoute,
     public dialog: MatDialog,
-    private http: HttpClient,
-    private bookService: BookServicesService,
     private snackBar: MatSnackBar,
     private authService: AuthService
   ) {}
   allBook: Book[] = [];
   @ViewChild('registerForm') form: NgForm;
+  postSubscription: Subscription;
 
   ngOnInit() {
     this.postService.getfetchPosts().subscribe((post: Post[]) => {
       this.postList = post;
-      this.dataInitialized = true;
-      this._changeDetectorRef.detectChanges();
+      this.postListFull = post;
     });
-    this.postService.getfetchPosts().subscribe((post) => {
-      this.loadedPosts = post;
-      console.log(this.loadedPosts);
-    });
+    // this.postSubscription = this.postService.refresh.subscribe((post) => {
+    //   this.postList = post;
+    // });
 
     // if (this.delete.delete) {
     //   this.onDeletePost(this.id);
@@ -92,23 +89,11 @@ export class UsersComponent implements OnInit {
     //   console.log(this.loadedPosts);
     // });
   }
-
-  getPost() {}
-
-  // onFetchPosts() {
-  //   this.isFetching = true;
-  //   this.postService.getfetchPosts().subscribe(
-  //     (posts) => {
-  //       this.isFetching = false;
-  //       this.loadedPosts = posts;
-  //     }
-  //     // (error) => {
-  //     //   this.error = error.message;
-  //     //   console.log(error);
-  //     // }
-  //   );
-  // }
-
+  getAllPost() {
+    this.postService.getFetchPost().subscribe((post: Post[]) => {
+      this.loadedPosts = post;
+    });
+  }
   goToMyProfile(id: any) {
     this.router.navigate(['./user-component']);
   }
@@ -161,40 +146,46 @@ export class UsersComponent implements OnInit {
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result :${result}`);
+      if (result) {
+      }
     });
   }
 
-  openEditDialog() {
-    let editDialog = this.dialog.open(EditDialogComponent, {
-      height: '600px',
-      width: '500px',
-      position: {
-        top: '10%',
-      },
+  openEditDialog(id: any) {
+    this.postService.getPostById(id).subscribe((personData) => {
+      let editDialog = this.dialog.open(EditDialogComponent, {
+        height: '600px',
+        width: '500px',
+        position: {
+          top: '10%',
+        },
+        data: { personData: { ...personData, id } },
+      });
+      editDialog.afterClosed();
     });
   }
-  openDeleteDialog() {
-    let editDialog = this.dialog.open(DeleteDialogComponent, {
+  openDeleteDialog(id: any) {
+    let deleteDialog = this.dialog.open(DeleteDialogComponent, {
       height: '200px',
       width: '300px',
       position: {
         top: '10%',
       },
     });
+    deleteDialog.afterClosed().subscribe((result) => {
+      if (result) {
+        this.postService.onDeletePost(id).subscribe(() => {
+          this.postService.getfetchPosts().subscribe((refreshList) => {
+            this.postList = refreshList.filter((post) => post.id !== id);
+            this.postService._refresh$.next(this.postList);
+          });
+        });
+      }
+    });
   }
 
   goToContactPage() {
     this.router.navigate(['Contacts']);
-  }
-  onDeletePost(id: any) {
-    this.http
-      .delete(
-        'https://angularapp-f143a-default-rtdb.firebaseio.com/posts/' +
-          id +
-          '.json'
-      )
-      .subscribe();
   }
 
   openSnackBar(message: string, action: string) {
@@ -269,7 +260,7 @@ export class UsersComponent implements OnInit {
     let editPost = this.loadedPosts.find((post) => {
       return post.id === id;
     });
-    console.log(editPost);
+    console.log('Aici este cel editat ' + editPost);
 
     this.registerForm.patchValue({
       firstname: editPost?.firstname,
@@ -280,10 +271,15 @@ export class UsersComponent implements OnInit {
       password: editPost?.password,
       rstpwd: editPost?.rstpwd,
     });
-    console.log(this.registerForm);
   }
   updateClick() {
     this.postService.updatePost(this.postId, this.registerForm.getRawValue());
-    console.log('se apelaza');
+  }
+  selectedButtonParentData(event: string) {
+    if (event === 'All') {
+      this.postList = this.postListFull;
+    } else {
+      this.postList = this.postListFull.filter((post) => post.gender === event);
+    }
   }
 }

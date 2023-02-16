@@ -1,3 +1,7 @@
-<p class="delete-paragraph">Esti sigur ca vrei sa stergi acest user?</p>
-<button class="btn btn-primary yes-button">Yes</button>
-<button class="btn btn-primary">No</button>
+<mat-dialog-content>Esti sigur ca vrei sa stergi ?</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="btn btn-primary yes-button" [mat-dialog-close]="true">
+    Yes
+  </button>
+  <button class="btn btn-primary" [mat-dialog-close]="false">No</button>
+</mat-dialog-actions>

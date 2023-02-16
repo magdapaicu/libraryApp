@@ -29,7 +29,7 @@ import { SharedSnack } from 'src/app/shared/shared-snack';
   styleUrls: ['./main-content.component.css'],
 })
 export class MainContentComponent implements OnInit {
-  newBookId!: any;
+  newBookId: any;
   allBook: Book[] = [];
   book: Book;
   color = 'red';
@@ -53,6 +53,8 @@ export class MainContentComponent implements OnInit {
   action: string;
   config: MatSnackBarConfig;
   genders = ['Male', 'Female'];
+  reviewText: string;
+  getReviews: string[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -299,5 +301,17 @@ export class MainContentComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  AddReview() {
+    this.bookService
+      .addReview(this.newBookId, this.reviewText)
+      .subscribe(() => {
+        this.reviewText = '';
+      });
+  }
+  printReview(bookId: string) {
+    this.bookService.getReviews(bookId).subscribe((reviews) => {
+      console.log(reviews);
+    });
   }
 }

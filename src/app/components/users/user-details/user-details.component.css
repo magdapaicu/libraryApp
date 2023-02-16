@@ -27,3 +27,18 @@
   color: aliceblue;
   height: 2 rem;
 }
+.lista-carti {
+  margin-left: 30px;
+}
+.lista-button {
+  margin-left: 50px;
+  margin-top: 30px;
+}
+.my-button {
+  margin-top: 30px;
+  margin-left: 30px;
+}
+.scroll-table {
+  height: 100%;
+  overflow: auto;
+}
