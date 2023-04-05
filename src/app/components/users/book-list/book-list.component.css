@@ -1,0 +1,65 @@
+.lista-carti {
+  margin-left: 30px;
+}
+.scroll-table {
+  height: 400px;
+  overflow: auto;
+  margin-top: 50px;
+}
+.filter {
+  margin-left: 30px;
+  margin-top: 30px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.col-1 {
+  grid-column: 1/2;
+}
+.col-2 {
+  grid-column: 2/2;
+}
+.all {
+  margin-right: 10px;
+  margin-top: 10px;
+  --bs-btn-bg: rgb(15, 93, 24);
+}
+.filter-button {
+  margin-top: 10px;
+  --bs-btn-bg: rgb(231, 145, 54);
+}
+.save-change-button {
+  margin-top: 10px;
+}
+.input {
+  margin-top: 10px;
+}
+.input1 {
+  border: 2px solid rgb(196, 8, 155);
+  margin-top: 10px;
+}
+.input2 {
+  border: 2px solid orange;
+  margin-top: 10px;
+}
+.input3 {
+  border: 2px solid rgb(46, 157, 46);
+  margin-top: 10px;
+}
+.input1::-webkit-input-placeholder {
+  color: rgb(196, 8, 155);
+}
+
+.input2::-webkit-input-placeholder {
+  color: orange;
+}
+.input2::-webkit-input-placeholder {
+  color: orange;
+}
+.input3::-webkit-input-placeholder {
+  color: rgb(46, 157, 46);
+}
+.td-checkBox {
+  text-align: center;
+}

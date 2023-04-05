@@ -3,6 +3,8 @@ export class Book {
   author: any;
   publishing: any;
   countPages: any;
-  view: any;
+  type: any;
+  review: string[];
   idBook: string;
+  selected?: boolean;
 }

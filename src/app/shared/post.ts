@@ -1,13 +1,10 @@
-import { Book } from './book';
-
 export class Post {
   firstname: string;
   lastname: string;
-  email: string;
+  public email: string;
   mobile: string;
-  pwd: string;
+  password: string;
   rstpwd: string;
   gender: any;
   id?: string;
-  book: Book;
 }

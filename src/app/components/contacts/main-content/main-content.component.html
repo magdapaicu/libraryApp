@@ -1,18 +1,24 @@
-<div>
+<div *ngFor="let book of allBook">
   <mat-card>
-    <div *ngFor="let book of allBook">
-      <div class="imagine"></div>
-      <div>
-        <h1>Title : {{ book.title }}</h1>
-        <h1>Author: {{ book.author }}</h1>
-        <h1>Publishing:{{ book.publishing }}</h1>
-        <h1>Count Page: {{ book.countPages }}</h1>
-        <h1>Review:{{ book.view }}</h1>
-        <div>
+    <div>
+      <div class="imagine column-left"></div>
+      <div class="column-right">
+        <p>
+          Title : {{ book.title }}
+          <span
+            *ngIf="newReview"
+            class="badge bg-danger position-absolute translate-middle"
+            >New</span
+          >
+        </p>
+        <p>Author: {{ book.author }}</p>
+        <p>Publishing: {{ book.publishing }}</p>
+        <p>Count Page: {{ book.countPages }}</p>
+        <p>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="50"
-            height="50"
+            width="35"
+            height="35"
             fill="currentColor"
             class="bi bi-eye"
             viewBox="0 0 16 16"
@@ -27,8 +33,75 @@
               d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
             />
           </svg>
-        </div>
+          Review
+        </p>
       </div>
     </div>
   </mat-card>
+
+  <mat-accordion class="mat-acordion">
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Click here to see all reviews </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <p *ngFor="let review of book.review">{{ review }}</p>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
+
+<form [formGroup]="reviewForm">
+  <button class="btn btn-primary add-new-review-button">Add Review</button>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="30"
+    height="30"
+    fill="currentColor"
+    class="bi bi-check-circle"
+    viewBox="0 0 16 16"
+    (click)="AddReview()"
+    [style.color]="color"
+  >
+    <path
+      d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+    />
+    <path
+      d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"
+    />
+  </svg>
+  <input
+    #review
+    type="text"
+    class="form-control firstControl"
+    formControlName="firstReview"
+    [(ngModel)]="reviewText"
+  />
+  <p class="paragraf" *ngIf="reviewForm.invalid && reviewForm.touched">
+    Acest camp este required!
+  </p>
+
+  <div formArrayName="reviews">
+    <!-- <div *ngFor="let review of reviewsControls.controls; let i = index">
+      <input
+        #review
+        type="text"
+        class="form-control nextReviews"
+        [formControlName]="i"
+      
+      />
+      
+
+      <p class="paragraf" *ngIf="reviewForm.invalid && reviewForm.touched">
+        Acest camp este required!
+      </p>
+
+      <p
+        class="renunta-paragraf"
+        (click)="renunta(i)"
+        *ngIf="reviewForm.invalid && reviewForm.touched"
+      >
+        Renunta !
+      </p>
+    </div> -->
+  </div>
+</form>

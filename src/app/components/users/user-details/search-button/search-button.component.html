@@ -1,0 +1,23 @@
+<div>
+  <input
+    class="spatiu"
+    type="radio"
+    value="All"
+    [(ngModel)]="option"
+    (change)="changeButtonSelectedChange()"
+  /><span>{{ genders[0] }}</span>
+  <input
+    class="spatiu"
+    type="radio"
+    value="Male"
+    [(ngModel)]="option"
+    (change)="changeButtonSelectedChange()"
+  /><span>{{ genders[1] }}</span>
+  <input
+    type="radio"
+    class="spatiu"
+    value="Female"
+    [(ngModel)]="option"
+    (change)="changeButtonSelectedChange()"
+  /><span>{{ genders[2] }}</span>
+</div>

@@ -3,14 +3,15 @@
   height: 100%;
   padding: 0;
   position: fixed;
+  border: 10px solid#161615;
+  background-color: white;
 }
 .title {
   margin-top: 50px;
-  font-size: 40px;
+  font-size: 30px;
 }
 .formUserDetails {
   margin-left: 50px;
-  background-color: antiquewhite;
 }
 .grid {
   display: grid;
@@ -21,4 +22,23 @@
   margin-top: 20px;
   float: right;
   margin-right: 20px;
+}
+.navbar {
+  color: aliceblue;
+  height: 2 rem;
+}
+.lista-carti {
+  margin-left: 30px;
+}
+.lista-button {
+  margin-left: 50px;
+  margin-top: 30px;
+}
+.my-button {
+  margin-top: 30px;
+  margin-left: 30px;
+}
+.scroll-table {
+  height: 100%;
+  overflow: auto;
 }

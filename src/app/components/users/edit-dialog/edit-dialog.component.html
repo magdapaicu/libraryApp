@@ -1,0 +1,42 @@
+<form [formGroup]="editPost" class="editBook">
+  <div class="divGol"></div>
+  <div>
+    <label for="name" class="form-label">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      [formControlName]="'firstname'"
+    />
+  </div>
+  <div>
+    <label for="lastname" class="form-label">Last Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="last-name"
+      [formControlName]="'lastname'"
+    />
+  </div>
+  <div>
+    <label for="email" class="form-label">Email</label>
+    <input
+      type="text"
+      class="form-control"
+      id="email"
+      [formControlName]="'email'"
+    />
+  </div>
+  <div>
+    <label for="phone" class="form-label">Phone</label>
+    <input
+      type="text"
+      class="form-control"
+      id="phone"
+      [formControlName]="'mobile'"
+    />
+  </div>
+  <button class="btn btn-primary edit-button" (click)="updatePost()">
+    Update
+  </button>
+</form>

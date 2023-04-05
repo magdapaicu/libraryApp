@@ -1,0 +1,15 @@
+.editBook {
+  margin-top: 0px;
+  margin-left: 0px;
+  width: 500px;
+  height: 600px;
+  background-color: rgb(144, 148, 148);
+  align-items: center;
+}
+.divGol {
+  height: 30px;
+}
+.edit-button {
+  margin-left: 215px;
+  margin-top: 100px;
+}

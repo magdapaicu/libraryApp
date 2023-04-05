@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BookComponent } from '../components/book/book.component';
-import { Book } from '../book';
-import { map, Observable } from 'rxjs';
+import { Book } from '../shared/book';
+import { map, mergeMap, Observable, pipe, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookServicesService {
   constructor(private http: HttpClient) {}
-  private id: string;
+  _refresh$ = new Subject<Book[]>();
+  refresh = this._refresh$.asObservable();
+  bookList: Book[] = [];
+  reviewsSubject = new Subject<string[]>();
 
   createPostBook(form: any) {
     return this.http
@@ -48,13 +51,14 @@ export class BookServicesService {
       );
   }
 
-  updateBook(id: string, form: any) {
+  updateBook(id: any, form: any) {
+    const formValue = form.getRawValue();
     this.http
       .put(
         'https://angularapp-f143a-default-rtdb.firebaseio.com/books/' +
           id +
           '.json',
-        form
+        formValue
       )
       .subscribe();
   }
@@ -65,13 +69,51 @@ export class BookServicesService {
         '.json'
     );
   }
-  deleteBookById(id: any) {
-    this.http
-      .delete(
+  deleteBookById(id: any): Observable<Book> {
+    return this.http.delete<Book>(
+      'https://angularapp-f143a-default-rtdb.firebaseio.com/books/' +
+        id +
+        '.json'
+    );
+  }
+  saveReview(form: any) {
+    return this.http
+      .post(
+        'https://angularapp-f143a-default-rtdb.firebaseio.com/books.json',
+        form.value
+      )
+      .subscribe((book) => console.log(book));
+  }
+  getFetchBook(): Observable<Book[]> {
+    return this.http.get<Book[]>(
+      'https://angularapp-f143a-default-rtdb.firebaseio.com/books.json'
+    );
+  }
+
+  addReview(bookId: string, review: string) {
+    return this.http
+      .get(
         'https://angularapp-f143a-default-rtdb.firebaseio.com/books/' +
-          id +
+          bookId +
           '.json'
       )
-      .subscribe();
+      .pipe(
+        mergeMap((book: any) => {
+          const updateBook = [...book.review, review];
+          return this.http.patch(
+            'https://angularapp-f143a-default-rtdb.firebaseio.com/books/' +
+              bookId +
+              '.json',
+            { review: updateBook }
+          );
+        })
+      );
+  }
+  getReviews(bookId: string) {
+    return this.http.get<string[]>(
+      'https://angularapp-f143a-default-rtdb.firebaseio.com/books/' +
+        bookId +
+        '/review.json'
+    );
   }
 }

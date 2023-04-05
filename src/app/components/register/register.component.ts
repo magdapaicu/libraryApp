@@ -2,24 +2,22 @@ import {
   Component,
   EventEmitter,
   Injectable,
-  Input,
   OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { Post } from 'src/app/post';
+import { Post } from 'src/app/shared/post';
 import { PostService } from 'src/app/services/post.service';
 import { Router } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogLogoutComponent } from 'src/app/dialog-logout/dialog-logout.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
-import { SharedSnack } from 'src/app/shared-snack';
+import { SharedSnack } from 'src/app/shared/shared-snack';
 import { MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
 import { MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { AuthService } from '../login/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -33,7 +31,8 @@ export class RegisterComponent implements OnInit {
     private postService: PostService,
     private router: Router,
     public dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private authService: AuthService
   ) {}
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
@@ -45,41 +44,46 @@ export class RegisterComponent implements OnInit {
   _filterText: string = '';
   singleClick: boolean = false;
   wasClicked = true;
+  filterResult: Post[] = [];
   messageCreateAccount: SharedSnack;
   message: string;
   action: string;
   config: MatSnackBarConfig;
+  genders = ['Male', 'Female'];
 
   @Output() isActiveChange: EventEmitter<boolean>;
   ngOnInit() {
     this.isFetching = true;
-    this.postService.getfetchPosts().subscribe(
-      (posts) => {
-        this.isFetching = false;
-        this.loadedPosts = posts;
-        console.log(posts);
-      },
-      (error) => {
-        this.error = error.message;
-      }
-    );
-
-    this.filteredPosts = this.loadedPosts;
+    this.postService.getfetchPosts().subscribe((post) => {
+      this.loadedPosts = post;
+      console.log(this.loadedPosts);
+    });
+    // this.postService.getfetchPosts().subscribe(
+    //   (post) => {
+    //     this.loadedPosts = post;
+    //     console.log(post);
+    //     const filterPost = this.loadedPosts.filter(
+    //       (posts) => posts.firstname == 'Ana'
+    //     );
+    //     console.log(
+    //       'Heloo aici este filtrarea ' + JSON.stringify(filterPost, null, ' ')
+    //     );
+    //   },
+    //   (error) => {
+    //     this.error = error.message;
+    //   }
+    // );
   }
 
   registerForm = new FormGroup({
-    firstname: new FormControl('', [Validators.required]),
-    lastname: new FormControl(''),
-    email: new FormControl(' '),
+    firstname: new FormControl(' ', [Validators.required]),
+    lastname: new FormControl(' '),
+    email: new FormControl(' ', [Validators.required]),
     mobile: new FormControl(' '),
     gender: new FormControl(' '),
-    pwd: new FormControl(' '),
+    password: new FormControl(' ', [Validators.required]),
     rstpwd: new FormControl(' '),
   });
-
-  get filterText() {
-    return this._filterText;
-  }
 
   set filterText(value: string) {
     this._filterText = value;
@@ -88,13 +92,13 @@ export class RegisterComponent implements OnInit {
 
   registerSubmited() {
     this.postService.createAndStorePost(this.registerForm.getRawValue());
+
     this.registerForm.patchValue({
       firstname: '',
       lastname: '',
       email: '',
       mobile: '',
-      gender: '',
-      pwd: '',
+      password: '',
       rstpwd: '',
     });
 
@@ -115,7 +119,7 @@ export class RegisterComponent implements OnInit {
     //   verticalPosition: 'bottom',
     //   description: 'd',
     // };
-    this.openSnackBar('Successfully registered', ':))');
+    this.openSnackBar('Successfully registered', '');
   }
 
   get FirstName(): FormControl {
@@ -126,7 +130,7 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('lastname') as FormControl;
   }
 
-  get Emai(): FormControl {
+  get Email(): FormControl {
     return this.registerForm.get('email') as FormControl;
   }
 
@@ -139,7 +143,7 @@ export class RegisterComponent implements OnInit {
   }
 
   get Password(): FormControl {
-    return this.registerForm.get('pwd') as FormControl;
+    return this.registerForm.get('password') as FormControl;
   }
 
   get ResetPassword(): FormControl {
@@ -190,7 +194,7 @@ export class RegisterComponent implements OnInit {
       email: editPost?.email,
       mobile: editPost?.mobile,
       gender: editPost?.gender,
-      pwd: editPost?.pwd,
+      password: editPost?.password,
       rstpwd: editPost?.rstpwd,
     });
     console.log(this.registerForm);
@@ -251,5 +255,17 @@ export class RegisterComponent implements OnInit {
   }
   goToLoginPage() {
     this.router.navigate(['app-login']);
+  }
+  onSubmitLogin(form: any) {
+    const email = this.registerForm.value.email;
+    const password = this.registerForm.value.password;
+    this.authService.signup(email!, password!).subscribe(
+      (respData) => {
+        console.log(respData);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }
